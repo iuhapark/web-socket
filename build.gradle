@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.4'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    /* jpa */
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    /* jsoup */
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.15.3'
+
+    /* log4j */
+    implementation 'org.apache.logging.log4j:log4j-api:2.23.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
+
+    /* Lombok */
+    compileOnly "org.projectlombok:lombok"
+    annotationProcessor "org.projectlombok:lombok"
+
+    /* hibernate */
+    runtimeOnly 'com.h2database:h2'
+
+    /** redis */
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    /* mysql */
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    /* messaging */
+    implementation 'org.springframework:spring-messaging:6.2.5'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket:3.4.4'
+    implementation 'org.webjars:stomp-websocket:2.3.4'
+
+
+    /* rabbitmq */
+    implementation 'org.springframework.amqp:spring-rabbit:3.2.4'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
